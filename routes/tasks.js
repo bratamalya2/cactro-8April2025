@@ -18,8 +18,13 @@ router.post('/', [
     taskValidationRules
 ], async (req, res) => {
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            // Return the array of validation errors
+            return res.status(400).json({ success: false, err: errors.array()[0].msg });
+        }
         const { title, description, status } = req.body;
-        const task = new Task({ title, description, status });
+        const task = new Task({ user: req.user.userId, title, description, status });
         await task.save();
         res.status(201).json({
             success: true
@@ -34,7 +39,9 @@ router.get('/', [
     jwtAuthWithRefresh
 ], async (req, res) => {
     try {
-        const tasks = await Task.find();
+        const tasks = await Task.find({
+            user: req.user.userId
+        });
         res.json({
             success: true,
             tasks
@@ -68,7 +75,13 @@ router.put('/:id', [
     taskValidationRules
 ], async (req, res) => {
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            // Return the array of validation errors
+            return res.status(400).json({ success: false, err: errors.array()[0].msg });
+        }
         const { title, description, status } = req.body;
+
         const task = await Task.findByIdAndUpdate(
             req.params.id,
             { title, description, status },
