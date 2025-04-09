@@ -1,8 +1,8 @@
-###Project overview.
+### Project overview.
 
 This project allows a user to create and login into his account. After login, one can do CRUD operations with tasks uploaded by him.
 
-###Steps to set up and run the project locally.
+### Steps to set up and run the project locally.
 
 1. git clone to a folder of your choice
 2. cd into the newly cloned folder
@@ -32,6 +32,6 @@ deployed API URL:
 
 https://cactro-8april2025.onrender.com
 
-###Postman collection link:
+### Postman collection link:
 
 https://red-escape-112378.postman.co/workspace/My-Workspace~23690013-c08f-4f20-893e-accba5deb72c/collection/10619316-1e702db7-9c6e-4e25-87c1-94b5b0c41ce3?action=share&creator=10619316
